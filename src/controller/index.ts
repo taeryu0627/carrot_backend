@@ -1,7 +1,8 @@
 import express from "express";
-import schoolController from "./school.controller";
+import TradeController from "./trade.controller";
+
 const router = express.Router();
 
-router.use("/schools", schoolController);
+router.use("/trade", TradeController);
 
 export default router;
