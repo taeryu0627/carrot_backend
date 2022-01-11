@@ -13,7 +13,16 @@ type NewArticle = {
 const router = express.Router();
 
 router.get("/articles", async (req, res) => {
-  const articles: Article[] = await Article.findAll();
+  const { title } = req.query;
+  if (title) {
+    const articles = await Article.findAll({
+      where: {
+        title: title,
+      },
+    });
+    return res.status(200).json(articles);
+  }
+  const articles = await Article.findAll();
   return res.status(200).json(articles);
 });
 
